@@ -18,9 +18,6 @@ code {
 .Title {
   position: absolute;
   left: 3.26%;
-  right: 68.33%;
-  top: 4.39%;
-  bottom: 87.99%;
 
   font-family: 'Montserrat';
   font-style: normal;
@@ -29,5 +26,36 @@ code {
   line-height: 78px;
 
   color: #739CFA;
+}
+
+.sub {
+  position: absolute;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 78px;
+}
+
+.BLeft {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 450px;
+}
+
+.BRight {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 200px;
+}
+
+.TRight {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 300px;
 }
 
