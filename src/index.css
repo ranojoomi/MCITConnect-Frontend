@@ -18,9 +18,8 @@ code {
 .Title {
   position: absolute;
   left: 3.26%;
-  right: 68.33%;
-  top: 4.39%;
-  bottom: 87.99%;
+  padding: 0%;
+  margin: 0%;
 
   font-family: 'Montserrat';
   font-style: normal;
@@ -29,5 +28,39 @@ code {
   line-height: 78px;
 
   color: #739CFA;
+}
+
+.BLeft {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 450px;
+}
+
+.BRight {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 200px;
+}
+
+.TRight {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 300px;
+}
+
+.mainLink {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 78px;
 }
 
