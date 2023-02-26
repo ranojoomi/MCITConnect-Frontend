@@ -16,9 +16,11 @@ const HomePage = () => {
         <div className="homepage App">
             <h2 className='Title'>CIT CONNECT</h2>
             <h3 className="sub">Fun for MCIT</h3>
-            <Text numberOfLines={1}>
-                <p className='mainLink'>Click to begin your&nbsp;{link}</p>
-            </Text>
+            <div className='myText'>
+                <Text numberOfLines={1}>
+                    <p className='mainLink'>Click to begin your&nbsp;{link}</p>
+                </Text>
+            </div>
             <img className='BLeft' src={BLeft} alt="Beautiful" />
             <img className='BRight' src={BRight} alt="Rock" /> 
             <img className='TRight' src={TRight} alt="Rocks" />
