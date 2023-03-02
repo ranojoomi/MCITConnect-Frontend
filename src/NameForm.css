@@ -3,22 +3,19 @@
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 600px;
-    min-height: 330px;
+    width: 45vw;
+    max-width: 800px;
+    min-height: 400px;
     background-image: url("./assets/Name_Contact_Block.png");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    padding: 4% 10% 4% 5%;
+    padding: 4% 7% 2% 12%;
     z-index: 2;
-}
 
-.BlockContent {
     display: flex;
     justify-content: center;
     flex-flow: column;
-    text-align: left;
-    height: 100%;
 }
 
 .FormItem {
@@ -34,14 +31,17 @@
 .TransparentInput {
     border: none;
     border-bottom: 3px solid #ffffff;
-    /* border-color: transparent; */
-    width: auto;
+    width: 30vw;
     background-color: transparent;
+}
+
+.TransparentInput:focus {
+    outline: none;
 }
 
 .TwoPeopleImg {
     position: absolute;
-    top: 71%;
+    top: 80%;
     left: 50%;
     width: 300px;
     transform: translate(-50%, -50%);
@@ -50,8 +50,8 @@
 
 .ThreeCircleImg {
     position: absolute;
-    top: 71%;
-    left: 72%;
+    top: 76%;
+    left: 80%;
     transform: translate(-50%, -50%);
     width: 300px;
     z-index: 1;
@@ -59,7 +59,13 @@
 
 .SubmitButton {
     position: absolute;
-    top: 95%;
-    left: 95%;
+    top: 75%;
+    left: 71%;
     transform: translate(-50%, -50%);
+    z-index: 50;
+
+    border: none;
+    background-color: transparent;
+    color: #6f6e6e;
+    font-size: 1.8vw;
 }

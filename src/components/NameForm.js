@@ -44,48 +44,45 @@ class NameForm extends React.Component {
         return (
             <div>
                 <div className="NameFormBlock">
-                    <div className="BlockContent">
-                        <form className="FormItem LightFont">
-                            <label>
-                                <div className="Question">
-                                    First Name:&nbsp;
-                                </div>
-                                <input
-                                    className="TransparentInput LightFont"
-                                    type="text"
-                                    value={firstName}
-                                    onChange={handleFirstNameChange}
-                                />
-                            </label>
-                        </form>
-                        <form className="FormItem LightFont">
-                            <label>
-                                <div className="Question">Last Name:&nbsp;</div>
-                                <input
-                                    className="TransparentInput LightFont"
-                                    type="text"
-                                    value={lastName}
-                                    onChange={handleLastNameChange}
-                                />
-                            </label>
-                        </form>
-                        <form className="FormItem LightFont">
-                            <label>
-                                <div className="Question">Email:&nbsp;</div>
-                                <input
-                                    className="TransparentInput LightFont"
-                                    type="text"
-                                    value={email}
-                                    onChange={handleEmailChange}
-                                />
-                            </label>
-                        </form>
-                    </div>
+                    <form className="FormItem LightFont">
+                        <label>
+                            <div className="Question">First Name:&nbsp;</div>
+                            <input
+                                className="TransparentInput LightFont"
+                                type="text"
+                                value={firstName}
+                                onChange={handleFirstNameChange}
+                            />
+                        </label>
+                    </form>
+                    <form className="FormItem LightFont">
+                        <label>
+                            <div className="Question">Last Name:&nbsp;</div>
+                            <input
+                                className="TransparentInput LightFont"
+                                type="text"
+                                value={lastName}
+                                onChange={handleLastNameChange}
+                            />
+                        </label>
+                    </form>
+                    <form className="FormItem LightFont">
+                        <label>
+                            <div className="Question">Email:&nbsp;</div>
+                            <input
+                                style={{ width: "36vw" }}
+                                className="TransparentInput LightFont"
+                                type="text"
+                                value={email}
+                                onChange={handleEmailChange}
+                            />
+                        </label>
+                    </form>
                 </div>
                 <img className="TwoPeopleImg" src={twoPeopleImg}></img>
                 <img className="ThreeCircleImg" src={threeCircleImg}></img>
                 <button
-                    className="SubmitButton"
+                    className="LightFont SubmitButton"
                     onClick={
                         this.props.firstName &&
                         this.props.lastName &&
@@ -94,7 +91,7 @@ class NameForm extends React.Component {
                             : this.handleError
                     }
                 >
-                    Submit
+                    Click to continue
                 </button>
             </div>
         );
