@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NameForm from "./NameForm";
 import MusicForm from "./MusicForm";
+import CuisineForm from "./CuisineForm";
 
 class Match extends React.Component {
     constructor(props) {
@@ -10,13 +11,19 @@ class Match extends React.Component {
             lastName: "",
             email: "",
             selectedMusicList: [],
+            selectedCuisineList: [],
             showNameForm: false,
-            showMusicForm: true,
+            showMusicForm: false,
+            showCuisineForm: true,
         };
 
         this.handleShowNameForm = this.handleShowNameForm.bind(this);
-        this.handleShowMusicForm = this.handleShowMusicForm.bind(this);
+        this.handleShowMusicFormL = this.handleShowMusicFormL.bind(this);
+        this.handleShowMusicFormR = this.handleShowMusicFormR.bind(this);
+        this.handleShowCuisineFormL = this.handleShowCuisineFormL.bind(this);
+        this.handleShowCuisineFormR = this.handleShowCuisineFormR.bind(this);
         this.setSelectedMusicList = this.setSelectedMusicList.bind(this);
+        this.setSelectedCuisineList = this.setSelectedCuisineList.bind(this);
 
         // this.handleChange = this.handleChange.bind(this);
         // this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,13 +33,33 @@ class Match extends React.Component {
         this.setState({ showNameForm: false });
     }
 
-    handleShowMusicForm() {
+    handleShowMusicFormL() {
         this.setState({ showMusicForm: false });
+    }
+
+    handleShowMusicFormR() {
+        this.setState({ showMusicForm: false });
+        this.setState({ showCuisineForm: true });
+    }
+
+    handleShowCuisineFormL() {
+        this.setState({ showCuisineForm: false });
+        this.setState({ showMusicForm: true });
+    }
+
+    handleShowCuisineFormR() {
+        this.setState({ showCuisineForm: false });
     }
 
     setSelectedMusicList(list) {
         this.setState({ selectedMusicList: list }, function() {
             console.log(this.state.selectedMusicList);
+        });
+    }
+
+    setSelectedCuisineList(list) {
+        this.setState({ selectedCuisineList: list }, function() {
+            console.log(this.state.selectedCuisineList);
         });
     }
 
@@ -72,9 +99,17 @@ class Match extends React.Component {
                     )}
                     {this.state.showMusicForm && (
                         <MusicForm
-                            handleIsVisible={this.handleShowMusicForm}
+                            handleIsVisibleL={this.handleShowMusicFormL}
+                            handleIsVisibleR={this.handleShowMusicFormR}
                             setSelectedMusicList={this.setSelectedMusicList}
                         ></MusicForm>
+                    )}
+                    {this.state.showCuisineForm && (
+                        <CuisineForm
+                            handleIsVisibleL={this.handleShowCuisineFormL}
+                            handleIsVisibleR={this.handleShowCuisineFormR}
+                            setSelectedCuisineList={this.setSelectedCuisineList}
+                        ></CuisineForm>
                     )}
                 </div>
             </div>

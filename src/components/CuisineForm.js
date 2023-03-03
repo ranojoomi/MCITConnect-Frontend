@@ -1,21 +1,33 @@
 import React, { Component } from "react";
-import MusicStyles from "../MusicForm.module.css";
+import CuisineStyle from "../CuisineForm.module.css";
 import "../match.css";
 
-class MusicForm extends React.Component {
+class CuisineForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             options: [
-                "Pop",
-                "Classical",
-                "Hip Hop",
-                "EDM",
-                "Jazz",
-                "Rock",
-                "Rock",
+                "Indian",
+                "Chinese",
+                "Italian",
+                "Mexican",
+                "Mediterranean",
+                "American",
+                "Korean",
+                "Japanese",
+                "Thai",
             ],
-            selectedOptions: [false, false, false, false, false, false, false],
+            selectedOptions: [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+            ],
         };
 
         this.updateSelection = this.updateSelection.bind(this);
@@ -29,7 +41,7 @@ class MusicForm extends React.Component {
             }
         }
 
-        this.props.setSelectedMusicList(list);
+        this.props.setSelectedCuisineList(list);
     }
 
     handleSelectionChange(index) {
@@ -47,7 +59,7 @@ class MusicForm extends React.Component {
 
     render() {
         const {
-            setSelectedMusicList,
+            setSelectedCuisineList,
             handleIsVisibleL,
             handleIsVisibleR,
         } = this.props;
@@ -55,87 +67,107 @@ class MusicForm extends React.Component {
             <div>
                 <div>
                     <h2
-                        className={`${MusicStyles.SemiBoldFont} ${MusicStyles.Question}`}
+                        className={`${CuisineStyle.SemiBoldFont} ${CuisineStyle.Question}`}
                     >
-                        Favorite Music Genre
+                        Favorite Cuisine
                     </h2>
                 </div>
 
-                <div className={MusicStyles.SelectionGroup}>
-                    <div className={MusicStyles.Column}>
+                <div className={CuisineStyle.SelectionGroup}>
+                    <div className={CuisineStyle.Row}>
                         <div
                             className={
                                 this.state.selectedOptions[0]
-                                    ? `${MusicStyles.SelectedButton}`
-                                    : `${MusicStyles.UnselectedButton}`
+                                    ? `${CuisineStyle.SelectedButton}`
+                                    : `${CuisineStyle.UnselectedButton}`
                             }
                             onClick={() => this.handleSelectionChange(0)}
                         >
-                            <text>Pop</text>
+                            <text>Indian</text>
                         </div>
                         <div
                             className={
                                 this.state.selectedOptions[1]
-                                    ? `${MusicStyles.SelectedButton}`
-                                    : `${MusicStyles.UnselectedButton}`
+                                    ? `${CuisineStyle.SelectedButton}`
+                                    : `${CuisineStyle.UnselectedButton}`
                             }
                             onClick={() => this.handleSelectionChange(1)}
                         >
-                            <text>Classical</text>
+                            <text>Chinese</text>
                         </div>
-                    </div>
-                    <div className={MusicStyles.Column}>
                         <div
                             className={
                                 this.state.selectedOptions[2]
-                                    ? `${MusicStyles.SelectedButton}`
-                                    : `${MusicStyles.UnselectedButton}`
+                                    ? `${CuisineStyle.SelectedButton}`
+                                    : `${CuisineStyle.UnselectedButton}`
                             }
                             onClick={() => this.handleSelectionChange(2)}
                         >
-                            <text>Hip Hop</text>
+                            <text>Italian</text>
                         </div>
+                    </div>
+                    <div className={CuisineStyle.Row}>
                         <div
                             className={
                                 this.state.selectedOptions[3]
-                                    ? `${MusicStyles.SelectedButton}`
-                                    : `${MusicStyles.UnselectedButton}`
+                                    ? `${CuisineStyle.SelectedButton}`
+                                    : `${CuisineStyle.UnselectedButton}`
                             }
                             onClick={() => this.handleSelectionChange(3)}
                         >
-                            <text>EDM</text>
+                            <text>Mexican</text>
                         </div>
                         <div
                             className={
                                 this.state.selectedOptions[4]
-                                    ? `${MusicStyles.SelectedButton}`
-                                    : `${MusicStyles.UnselectedButton}`
+                                    ? `${CuisineStyle.SelectedButtonBig}`
+                                    : `${CuisineStyle.UnselectedButtonBig}`
                             }
                             onClick={() => this.handleSelectionChange(4)}
                         >
-                            <text>Jazz</text>
+                            <text>Mediterranean</text>
                         </div>
-                    </div>
-                    <div className={MusicStyles.Column}>
                         <div
                             className={
                                 this.state.selectedOptions[5]
-                                    ? `${MusicStyles.SelectedButton}`
-                                    : `${MusicStyles.UnselectedButton}`
+                                    ? `${CuisineStyle.SelectedButton}`
+                                    : `${CuisineStyle.UnselectedButton}`
                             }
                             onClick={() => this.handleSelectionChange(5)}
                         >
-                            <text>Rock</text>
+                            <text>American</text>
                         </div>
+                    </div>
+                    <div className={CuisineStyle.Row}>
                         <div
                             className={
                                 this.state.selectedOptions[6]
-                                    ? `${MusicStyles.SelectedButton}`
-                                    : `${MusicStyles.UnselectedButton}`
+                                    ? `${CuisineStyle.SelectedButton}`
+                                    : `${CuisineStyle.UnselectedButton}`
                             }
                             onClick={() => this.handleSelectionChange(6)}
                         >
-                            <text>Country</text>
+                            <text>Korean</text>
+                        </div>
+                        <div
+                            className={
+                                this.state.selectedOptions[7]
+                                    ? `${CuisineStyle.SelectedButton}`
+                                    : `${CuisineStyle.UnselectedButton}`
+                            }
+                            onClick={() => this.handleSelectionChange(7)}
+                        >
+                            <text>Japanese</text>
+                        </div>
+                        <div
+                            className={
+                                this.state.selectedOptions[8]
+                                    ? `${CuisineStyle.SelectedButton}`
+                                    : `${CuisineStyle.UnselectedButton}`
+                            }
+                            onClick={() => this.handleSelectionChange(8)}
+                        >
+                            <text>Thai</text>
                         </div>
                     </div>
                 </div>
@@ -160,4 +192,4 @@ class MusicForm extends React.Component {
     }
 }
 
-export default MusicForm;
+export default CuisineForm;
