@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NameForm from "./NameForm";
+import MusicForm from "./MusicForm";
 
 class Match extends React.Component {
     constructor(props) {
@@ -8,10 +9,14 @@ class Match extends React.Component {
             firstName: "",
             lastName: "",
             email: "",
-            showNameForm: true,
+            selectedMusicList: [],
+            showNameForm: false,
+            showMusicForm: true,
         };
 
         this.handleShowNameForm = this.handleShowNameForm.bind(this);
+        this.handleShowMusicForm = this.handleShowMusicForm.bind(this);
+        this.setSelectedMusicList = this.setSelectedMusicList.bind(this);
 
         // this.handleChange = this.handleChange.bind(this);
         // this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,12 +26,15 @@ class Match extends React.Component {
         this.setState({ showNameForm: false });
     }
 
-    // handleChange(event) {
-    //     this.setState({ value: event.target.value });
-    // }
+    handleShowMusicForm() {
+        this.setState({ showMusicForm: false });
+    }
 
-    // handleSubmit(event) {
-    // }
+    setSelectedMusicList(list) {
+        this.setState({ selectedMusicList: list }, function() {
+            console.log(this.state.selectedMusicList);
+        });
+    }
 
     changeFirstName = (event) => {
         this.setState({
@@ -61,6 +69,12 @@ class Match extends React.Component {
                             handleEmailChange={this.changeEmail}
                             handleIsVisible={this.handleShowNameForm}
                         ></NameForm>
+                    )}
+                    {this.state.showMusicForm && (
+                        <MusicForm
+                            handleIsVisible={this.handleShowMusicForm}
+                            setSelectedMusicList={this.setSelectedMusicList}
+                        ></MusicForm>
                     )}
                 </div>
             </div>
