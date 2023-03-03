@@ -3,6 +3,7 @@ import NameForm from "./NameForm";
 import MusicForm from "./MusicForm";
 import CuisineForm from "./CuisineForm";
 import MovieForm from "./MovieForm";
+import HobbyForm from "./HobbyForm";
 
 class Match extends React.Component {
     constructor(props) {
@@ -14,10 +15,12 @@ class Match extends React.Component {
             selectedMusicList: [],
             selectedCuisineList: [],
             selectedMovieList: [],
+            selectedHobbyList: [],
             showNameForm: false,
             showMusicForm: false,
             showCuisineForm: false,
-            showMovieForm: true,
+            showMovieForm: false,
+            showHobbyForm: true,
         };
 
         this.handleShowNameForm = this.handleShowNameForm.bind(this);
@@ -27,10 +30,13 @@ class Match extends React.Component {
         this.handleShowCuisineFormR = this.handleShowCuisineFormR.bind(this);
         this.handleShowMovieFormL = this.handleShowMovieFormL.bind(this);
         this.handleShowMovieFormR = this.handleShowMovieFormR.bind(this);
+        this.handleShowHobbyFormL = this.handleShowHobbyFormL.bind(this);
+        this.handleShowHobbyFormR = this.handleShowHobbyFormR.bind(this);
 
         this.setSelectedMusicList = this.setSelectedMusicList.bind(this);
         this.setSelectedCuisineList = this.setSelectedCuisineList.bind(this);
         this.setSelectedMovieList = this.setSelectedMovieList.bind(this);
+        this.setSelectedHobbyList = this.setSelectedHobbyList.bind(this);
 
         // this.handleChange = this.handleChange.bind(this);
         // this.handleSubmit = this.handleSubmit.bind(this);
@@ -66,6 +72,14 @@ class Match extends React.Component {
         this.setState({ showMovieForm: false });
     }
 
+    handleShowHobbyFormL() {
+        this.setState({ showHobbyForm: false });
+    }
+
+    handleShowHobbyFormR() {
+        this.setState({ showHobbyForm: false });
+    }
+
     setSelectedMusicList(list) {
         this.setState({ selectedMusicList: list }, function() {
             console.log(this.state.selectedMusicList);
@@ -81,6 +95,12 @@ class Match extends React.Component {
     setSelectedMovieList(list) {
         this.setState({ selectedMovieList: list }, function() {
             console.log(this.state.selectedMovieList);
+        });
+    }
+
+    setSelectedHobbyList(list) {
+        this.setState({ selectedHobbyList: list }, function() {
+            console.log(this.state.selectedHobbyList);
         });
     }
 
@@ -138,6 +158,13 @@ class Match extends React.Component {
                             handleIsVisibleR={this.handleShowMovieFormR}
                             setSelectedMovieList={this.setSelectedMovieList}
                         ></MovieForm>
+                    )}
+                    {this.state.showHobbyForm && (
+                        <HobbyForm
+                            handleIsVisibleL={this.handleShowHobbyFormL}
+                            handleIsVisibleR={this.handleShowHobbyFormR}
+                            setSelectedHobbyList={this.setSelectedHobbyList}
+                        ></HobbyForm>
                     )}
                 </div>
             </div>
