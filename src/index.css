@@ -15,6 +15,10 @@ code {
         monospace;
 }
 
+textarea {
+    resize: none;
+}
+
 .Title {
     position: absolute;
     left: 3.26%;

@@ -4,6 +4,7 @@ import MusicForm from "./MusicForm";
 import CuisineForm from "./CuisineForm";
 import MovieForm from "./MovieForm";
 import HobbyForm from "./HobbyForm";
+import FunForm from "./FunForm";
 
 class Match extends React.Component {
     constructor(props) {
@@ -16,11 +17,16 @@ class Match extends React.Component {
             selectedCuisineList: [],
             selectedMovieList: [],
             selectedHobbyList: [],
+            languages: "",
+            classes: "",
+            selectedSpacesTabs: [],
+            twoSums: "",
             showNameForm: false,
             showMusicForm: false,
             showCuisineForm: false,
             showMovieForm: false,
-            showHobbyForm: true,
+            showHobbyForm: false,
+            showFunForm: true,
         };
 
         this.handleShowNameForm = this.handleShowNameForm.bind(this);
@@ -32,11 +38,15 @@ class Match extends React.Component {
         this.handleShowMovieFormR = this.handleShowMovieFormR.bind(this);
         this.handleShowHobbyFormL = this.handleShowHobbyFormL.bind(this);
         this.handleShowHobbyFormR = this.handleShowHobbyFormR.bind(this);
+        this.handleShowFunForm = this.handleShowFunForm.bind(this);
+
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
 
         this.setSelectedMusicList = this.setSelectedMusicList.bind(this);
         this.setSelectedCuisineList = this.setSelectedCuisineList.bind(this);
         this.setSelectedMovieList = this.setSelectedMovieList.bind(this);
         this.setSelectedHobbyList = this.setSelectedHobbyList.bind(this);
+        this.setSelectedSpacesTabs = this.setSelectedSpacesTabs.bind(this);
 
         // this.handleChange = this.handleChange.bind(this);
         // this.handleSubmit = this.handleSubmit.bind(this);
@@ -80,6 +90,15 @@ class Match extends React.Component {
         this.setState({ showHobbyForm: false });
     }
 
+    handleShowFunForm() {
+        this.setState({ showFunForm: false });
+    }
+
+    handleFormSubmit() {
+        console.log("TEST::");
+        console.log(this.state);
+    }
+
     setSelectedMusicList(list) {
         this.setState({ selectedMusicList: list }, function() {
             console.log(this.state.selectedMusicList);
@@ -104,6 +123,12 @@ class Match extends React.Component {
         });
     }
 
+    setSelectedSpacesTabs(list) {
+        this.setState({ selectedSpacesTabs: list }, function() {
+            console.log(this.state.selectedSpacesTabs);
+        });
+    }
+
     changeFirstName = (event) => {
         this.setState({
             firstName: event.target.value,
@@ -119,6 +144,24 @@ class Match extends React.Component {
     changeEmail = (event) => {
         this.setState({
             email: event.target.value,
+        });
+    };
+
+    changeLanguages = (event) => {
+        this.setState({
+            languages: event.target.value,
+        });
+    };
+
+    changeClasses = (event) => {
+        this.setState({
+            classes: event.target.value,
+        });
+    };
+
+    changeTwoSums = (event) => {
+        this.setState({
+            twoSums: event.target.value,
         });
     };
 
@@ -165,6 +208,19 @@ class Match extends React.Component {
                             handleIsVisibleR={this.handleShowHobbyFormR}
                             setSelectedHobbyList={this.setSelectedHobbyList}
                         ></HobbyForm>
+                    )}
+                    {this.state.showFunForm && (
+                        <FunForm
+                            languages={this.state.languages}
+                            classes={this.state.classes}
+                            twoSums={this.state.twoSums}
+                            handleLanguagesChange={this.changeLanguages}
+                            handleClassesChange={this.changeClasses}
+                            handleTwoSumsChange={this.changeTwoSums}
+                            setSelectedSpacesTabs={this.setSelectedSpacesTabs}
+                            handleIsVisible={this.handleShowFunForm}
+                            handleFormSubmit={this.handleFormSubmit}
+                        ></FunForm>
                     )}
                 </div>
             </div>
