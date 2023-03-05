@@ -1,13 +1,18 @@
 import React, { Component } from "react";
-import CatDogStyle from "../CatDogForm.module.css";
+import PlaceStyles from "../PlaceForm.module.css";
 import "../match.css";
 
-class CatDogForm extends React.Component {
+class PlaceForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            options: ["Cats", "Dogs"],
-            selectedOptions: [false, false],
+            options: [
+                "Big Cities",
+                "Nature",
+                "Architecture",
+                "Leisure & Chill",
+            ],
+            selectedOptions: [false, false, false, false],
         };
 
         this.updateSelection = this.updateSelection.bind(this);
@@ -21,7 +26,7 @@ class CatDogForm extends React.Component {
             }
         }
 
-        this.props.setSelectedCatDogList(list);
+        this.props.setSelectedPlaceList(list);
     }
 
     handleSelectionChange(index) {
@@ -40,7 +45,7 @@ class CatDogForm extends React.Component {
     render() {
         const {
             num,
-            setSelectedCatDogList,
+            setSelectedPlaceList,
             handleIsVisibleL,
             handleIsVisibleR,
         } = this.props;
@@ -48,33 +53,53 @@ class CatDogForm extends React.Component {
             <div>
                 <div>
                     <h2
-                        className={`${CatDogStyle.SemiBoldFont} ${CatDogStyle.Question}`}
+                        className={`${PlaceStyles.SemiBoldFont} ${PlaceStyles.Question}`}
                     >
-                        Cats or Dogs?
+                        Places You (Would) Love
                     </h2>
                 </div>
 
-                <div className={CatDogStyle.SelectionGroup}>
-                    <div className={CatDogStyle.Row}>
+                <div className={PlaceStyles.SelectionGroup}>
+                    <div className={PlaceStyles.Row}>
                         <div
                             className={
                                 this.state.selectedOptions[0]
-                                    ? `${CatDogStyle.SelectedButton}`
-                                    : `${CatDogStyle.UnselectedButton}`
+                                    ? `${PlaceStyles.SelectedButton}`
+                                    : `${PlaceStyles.UnselectedButton}`
                             }
                             onClick={() => this.handleSelectionChange(0)}
                         >
-                            {`${this.state.options[0]}`}
+                            <text>{`${this.state.options[0]}`}</text>
                         </div>
                         <div
                             className={
                                 this.state.selectedOptions[1]
-                                    ? `${CatDogStyle.SelectedButton}`
-                                    : `${CatDogStyle.UnselectedButton}`
+                                    ? `${PlaceStyles.SelectedButton}`
+                                    : `${PlaceStyles.UnselectedButton}`
                             }
                             onClick={() => this.handleSelectionChange(1)}
                         >
-                            {`${this.state.options[1]}`}
+                            <text>{`${this.state.options[1]}`}</text>
+                        </div>
+                        <div
+                            className={
+                                this.state.selectedOptions[2]
+                                    ? `${PlaceStyles.SelectedButton}`
+                                    : `${PlaceStyles.UnselectedButton}`
+                            }
+                            onClick={() => this.handleSelectionChange(2)}
+                        >
+                            <text>{`${this.state.options[2]}`}</text>
+                        </div>
+                        <div
+                            className={
+                                this.state.selectedOptions[3]
+                                    ? `${PlaceStyles.SelectedButton}`
+                                    : `${PlaceStyles.UnselectedButton}`
+                            }
+                            onClick={() => this.handleSelectionChange(3)}
+                        >
+                            <text>{`${this.state.options[3]}`}</text>
                         </div>
                     </div>
                 </div>
@@ -99,4 +124,4 @@ class CatDogForm extends React.Component {
     }
 }
 
-export default CatDogForm;
+export default PlaceForm;

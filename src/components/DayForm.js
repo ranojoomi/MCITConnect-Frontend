@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import CatDogStyle from "../CatDogForm.module.css";
+import DayStyles from "../DayForm.module.css";
 import "../match.css";
 
-class CatDogForm extends React.Component {
+class DayForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            options: ["Cats", "Dogs"],
+            options: ["Morning", "Night"],
             selectedOptions: [false, false],
         };
 
@@ -21,7 +21,7 @@ class CatDogForm extends React.Component {
             }
         }
 
-        this.props.setSelectedCatDogList(list);
+        this.props.setSelectedDayList(list);
     }
 
     handleSelectionChange(index) {
@@ -40,7 +40,7 @@ class CatDogForm extends React.Component {
     render() {
         const {
             num,
-            setSelectedCatDogList,
+            setSelectedDayList,
             handleIsVisibleL,
             handleIsVisibleR,
         } = this.props;
@@ -48,33 +48,33 @@ class CatDogForm extends React.Component {
             <div>
                 <div>
                     <h2
-                        className={`${CatDogStyle.SemiBoldFont} ${CatDogStyle.Question}`}
+                        className={`${DayStyles.SemiBoldFont} ${DayStyles.Question}`}
                     >
-                        Cats or Dogs?
+                        Morining or Night person?
                     </h2>
                 </div>
 
-                <div className={CatDogStyle.SelectionGroup}>
-                    <div className={CatDogStyle.Row}>
+                <div className={DayStyles.SelectionGroup}>
+                    <div className={DayStyles.Row}>
                         <div
                             className={
                                 this.state.selectedOptions[0]
-                                    ? `${CatDogStyle.SelectedButton}`
-                                    : `${CatDogStyle.UnselectedButton}`
+                                    ? `${DayStyles.SelectedButton}`
+                                    : `${DayStyles.UnselectedButton}`
                             }
                             onClick={() => this.handleSelectionChange(0)}
                         >
-                            {`${this.state.options[0]}`}
+                            <text>{`${this.state.options[0]}`}</text>
                         </div>
                         <div
                             className={
                                 this.state.selectedOptions[1]
-                                    ? `${CatDogStyle.SelectedButton}`
-                                    : `${CatDogStyle.UnselectedButton}`
+                                    ? `${DayStyles.SelectedButton}`
+                                    : `${DayStyles.UnselectedButton}`
                             }
                             onClick={() => this.handleSelectionChange(1)}
                         >
-                            {`${this.state.options[1]}`}
+                            <text>{`${this.state.options[1]}`}</text>
                         </div>
                     </div>
                 </div>
@@ -99,4 +99,4 @@ class CatDogForm extends React.Component {
     }
 }
 
-export default CatDogForm;
+export default DayForm;
