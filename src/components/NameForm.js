@@ -44,7 +44,12 @@ class NameForm extends React.Component {
         return (
             <div>
                 <div className="NameFormBlock">
-                    <form className="FormItem LightFont">
+                    <form
+                        className="FormItem LightFont"
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                        }}
+                    >
                         <label>
                             <div className="Question">First Name:&nbsp;</div>
                             <input
@@ -55,7 +60,12 @@ class NameForm extends React.Component {
                             />
                         </label>
                     </form>
-                    <form className="FormItem LightFont">
+                    <form
+                        className="FormItem LightFont"
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                        }}
+                    >
                         <label>
                             <div className="Question">Last Name:&nbsp;</div>
                             <input
@@ -66,7 +76,12 @@ class NameForm extends React.Component {
                             />
                         </label>
                     </form>
-                    <form className="FormItem LightFont">
+                    <form
+                        className="FormItem LightFont"
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                        }}
+                    >
                         <label>
                             <div className="Question">Email:&nbsp;</div>
                             <input

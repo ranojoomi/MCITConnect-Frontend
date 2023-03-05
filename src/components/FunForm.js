@@ -53,7 +53,11 @@ class FunForm extends React.Component {
                     className={`${FunStyles.Question1Block} ${FunStyles.RegularFont}`}
                 >
                     <text>What is your favorite language and IDE?</text>
-                    <form>
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                        }}
+                    >
                         <label>
                             <input
                                 className={`${FunStyles.TransparentInput} ${FunStyles.RegularFont}`}
@@ -64,7 +68,11 @@ class FunForm extends React.Component {
                         </label>
                     </form>
                     <text>What is you favorite CIT class?</text>
-                    <form>
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                        }}
+                    >
                         <label>
                             <input
                                 className={`${FunStyles.TransparentInput} ${FunStyles.RegularFont}`}
@@ -102,7 +110,11 @@ class FunForm extends React.Component {
                         <div className={FunStyles.TwoSumsQ}>
                             Do this "Two Sums" Questions
                         </div>
-                        <form>
+                        <form
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                            }}
+                        >
                             <label>
                                 <textarea
                                     className={`${FunStyles.TwoSumsA} ${FunStyles.RegularFont}`}

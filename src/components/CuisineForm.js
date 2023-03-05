@@ -59,6 +59,7 @@ class CuisineForm extends React.Component {
 
     render() {
         const {
+            num,
             setSelectedCuisineList,
             handleIsVisibleL,
             handleIsVisibleR,
@@ -176,7 +177,7 @@ class CuisineForm extends React.Component {
                     className="ArrowL"
                     onClick={() => {
                         this.updateSelection();
-                        this.props.handleIsVisibleL();
+                        this.props.handleIsVisibleL(num);
                     }}
                 ></button>
 
@@ -184,7 +185,7 @@ class CuisineForm extends React.Component {
                     className="ArrowR"
                     onClick={() => {
                         this.updateSelection();
-                        this.props.handleIsVisibleR();
+                        this.props.handleIsVisibleR(num);
                     }}
                 ></button>
             </div>

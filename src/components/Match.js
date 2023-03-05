@@ -5,6 +5,7 @@ import CuisineForm from "./CuisineForm";
 import MovieForm from "./MovieForm";
 import HobbyForm from "./HobbyForm";
 import FunForm from "./FunForm";
+import CatDogForm from "./CatDogForm";
 
 class Match extends React.Component {
     constructor(props) {
@@ -13,6 +14,7 @@ class Match extends React.Component {
             firstName: "",
             lastName: "",
             email: "",
+            selectedCatDogList: [],
             selectedMusicList: [],
             selectedCuisineList: [],
             selectedMovieList: [],
@@ -21,82 +23,90 @@ class Match extends React.Component {
             classes: "",
             selectedSpacesTabs: [],
             twoSums: "",
+
+            showForm: [true, false, false, false, false, false, false],
+
             showNameForm: false,
+            showCatDogForm: true,
             showMusicForm: false,
             showCuisineForm: false,
             showMovieForm: false,
             showHobbyForm: false,
-            showFunForm: true,
+            showFunForm: false,
         };
 
         this.handleShowNameForm = this.handleShowNameForm.bind(this);
-        this.handleShowMusicFormL = this.handleShowMusicFormL.bind(this);
-        this.handleShowMusicFormR = this.handleShowMusicFormR.bind(this);
-        this.handleShowCuisineFormL = this.handleShowCuisineFormL.bind(this);
-        this.handleShowCuisineFormR = this.handleShowCuisineFormR.bind(this);
-        this.handleShowMovieFormL = this.handleShowMovieFormL.bind(this);
-        this.handleShowMovieFormR = this.handleShowMovieFormR.bind(this);
-        this.handleShowHobbyFormL = this.handleShowHobbyFormL.bind(this);
-        this.handleShowHobbyFormR = this.handleShowHobbyFormR.bind(this);
+
+        this.handleShowFormL = this.handleShowFormL.bind(this);
+        this.handleShowFormR = this.handleShowFormR.bind(this);
+
+        // this.handleShowMusicFormL = this.handleShowMusicFormL.bind(this);
+        // this.handleShowMusicFormR = this.handleShowMusicFormR.bind(this);
+        // this.handleShowCuisineFormL = this.handleShowCuisineFormL.bind(this);
+        // this.handleShowCuisineFormR = this.handleShowCuisineFormR.bind(this);
+        // this.handleShowMovieFormL = this.handleShowMovieFormL.bind(this);
+        // this.handleShowMovieFormR = this.handleShowMovieFormR.bind(this);
+        // this.handleShowHobbyFormL = this.handleShowHobbyFormL.bind(this);
+        // this.handleShowHobbyFormR = this.handleShowHobbyFormR.bind(this);
         this.handleShowFunForm = this.handleShowFunForm.bind(this);
 
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
 
+        this.setSelectedCatDogList = this.setSelectedCatDogList.bind(this);
         this.setSelectedMusicList = this.setSelectedMusicList.bind(this);
         this.setSelectedCuisineList = this.setSelectedCuisineList.bind(this);
         this.setSelectedMovieList = this.setSelectedMovieList.bind(this);
         this.setSelectedHobbyList = this.setSelectedHobbyList.bind(this);
         this.setSelectedSpacesTabs = this.setSelectedSpacesTabs.bind(this);
+    }
 
-        // this.handleChange = this.handleChange.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
+    // API call to be added!! FLASK
+    handleFormSubmit() {
+        console.log("TEST::");
+        console.log(this.state);
     }
 
     handleShowNameForm() {
-        this.setState({ showNameForm: false });
+        this.setState({
+            showForm: [false, true, false, false, false, false, false],
+        });
     }
 
-    handleShowMusicFormL() {
-        this.setState({ showMusicForm: false });
+    handleShowFormL(index) {
+        const updatedShow = this.state.showForm.map((isShown, i) => {
+            if (i === index - 1) {
+                return true;
+            } else if (i === index) {
+                return false;
+            } else {
+                return isShown;
+            }
+        });
+        console.log(updatedShow);
+        this.setState({ showForm: updatedShow });
     }
 
-    handleShowMusicFormR() {
-        this.setState({ showMusicForm: false });
-        this.setState({ showCuisineForm: true });
-    }
-
-    handleShowCuisineFormL() {
-        this.setState({ showCuisineForm: false });
-        this.setState({ showMusicForm: true });
-    }
-
-    handleShowCuisineFormR() {
-        this.setState({ showCuisineForm: false });
-    }
-
-    handleShowMovieFormL() {
-        this.setState({ showMovieForm: false });
-    }
-
-    handleShowMovieFormR() {
-        this.setState({ showMovieForm: false });
-    }
-
-    handleShowHobbyFormL() {
-        this.setState({ showHobbyForm: false });
-    }
-
-    handleShowHobbyFormR() {
-        this.setState({ showHobbyForm: false });
+    handleShowFormR(index) {
+        const updatedShow = this.state.showForm.map((isShown, i) => {
+            if (i === index + 1) {
+                return true;
+            } else if (i === index) {
+                return false;
+            } else {
+                return isShown;
+            }
+        });
+        this.setState({ showForm: updatedShow });
     }
 
     handleShowFunForm() {
         this.setState({ showFunForm: false });
     }
 
-    handleFormSubmit() {
-        console.log("TEST::");
-        console.log(this.state);
+    setSelectedCatDogList(list) {
+        this.setState({ selectedCatDogList: list }, function() {
+            console.log(this.state.selectedCatDogList);
+        });
     }
 
     setSelectedMusicList(list) {
@@ -170,7 +180,7 @@ class Match extends React.Component {
             <div className="homepage App">
                 <h2 className="Title">CIT CONNECT</h2>
                 <div className="Content">
-                    {this.state.showNameForm && (
+                    {this.state.showForm[0] && (
                         <NameForm
                             firstName={this.state.firstName}
                             handleFirstNameChange={this.changeFirstName}
@@ -181,36 +191,49 @@ class Match extends React.Component {
                             handleIsVisible={this.handleShowNameForm}
                         ></NameForm>
                     )}
-                    {this.state.showMusicForm && (
+                    {this.state.showForm[1] && (
+                        <CatDogForm
+                            num={1}
+                            handleIsVisibleL={this.handleShowFormL}
+                            handleIsVisibleR={this.handleShowFormR}
+                            setSelectedCatDogList={this.setSelectedCatDogList}
+                        ></CatDogForm>
+                    )}
+                    {this.state.showForm[2] && (
                         <MusicForm
-                            handleIsVisibleL={this.handleShowMusicFormL}
-                            handleIsVisibleR={this.handleShowMusicFormR}
+                            num={2}
+                            handleIsVisibleL={this.handleShowFormL}
+                            handleIsVisibleR={this.handleShowFormR}
                             setSelectedMusicList={this.setSelectedMusicList}
                         ></MusicForm>
                     )}
-                    {this.state.showCuisineForm && (
+                    {this.state.showForm[3] && (
                         <CuisineForm
-                            handleIsVisibleL={this.handleShowCuisineFormL}
-                            handleIsVisibleR={this.handleShowCuisineFormR}
+                            num={3}
+                            handleIsVisibleL={this.handleShowFormL}
+                            handleIsVisibleR={this.handleShowFormR}
                             setSelectedCuisineList={this.setSelectedCuisineList}
                         ></CuisineForm>
                     )}
-                    {this.state.showMovieForm && (
+                    {this.state.showForm[4] && (
                         <MovieForm
-                            handleIsVisibleL={this.handleShowMovieFormL}
-                            handleIsVisibleR={this.handleShowMovieFormR}
+                            num={4}
+                            handleIsVisibleL={this.handleShowFormL}
+                            handleIsVisibleR={this.handleShowFormR}
                             setSelectedMovieList={this.setSelectedMovieList}
                         ></MovieForm>
                     )}
-                    {this.state.showHobbyForm && (
+                    {this.state.showForm[5] && (
                         <HobbyForm
-                            handleIsVisibleL={this.handleShowHobbyFormL}
-                            handleIsVisibleR={this.handleShowHobbyFormR}
+                            num={5}
+                            handleIsVisibleL={this.handleShowFormL}
+                            handleIsVisibleR={this.handleShowFormR}
                             setSelectedHobbyList={this.setSelectedHobbyList}
                         ></HobbyForm>
                     )}
-                    {this.state.showFunForm && (
+                    {this.state.showForm[6] && (
                         <FunForm
+                            num={6}
                             languages={this.state.languages}
                             classes={this.state.classes}
                             twoSums={this.state.twoSums}
@@ -218,7 +241,6 @@ class Match extends React.Component {
                             handleClassesChange={this.changeClasses}
                             handleTwoSumsChange={this.changeTwoSums}
                             setSelectedSpacesTabs={this.setSelectedSpacesTabs}
-                            handleIsVisible={this.handleShowFunForm}
                             handleFormSubmit={this.handleFormSubmit}
                         ></FunForm>
                     )}
