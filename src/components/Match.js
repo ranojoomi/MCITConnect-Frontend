@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+
 import NameForm from "./NameForm";
 import MusicForm from "./MusicForm";
 import CuisineForm from "./CuisineForm";
@@ -13,6 +16,7 @@ class Match extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            // DATA TO SEND
             firstName: "",
             lastName: "",
             email: "",
@@ -27,6 +31,9 @@ class Match extends React.Component {
             classes: "",
             selectedSpacesTabs: [],
             twoSums: "",
+            ///////////////////
+
+            redirect: false,
 
             showForm: [
                 true,
@@ -39,30 +46,12 @@ class Match extends React.Component {
                 false,
                 false,
             ],
-
-            showNameForm: false,
-            showCatDogForm: true,
-            showMusicForm: false,
-            showCuisineForm: false,
-            showMovieForm: false,
-            showHobbyForm: false,
-            showFunForm: false,
         };
 
         this.handleShowNameForm = this.handleShowNameForm.bind(this);
 
         this.handleShowFormL = this.handleShowFormL.bind(this);
         this.handleShowFormR = this.handleShowFormR.bind(this);
-
-        // this.handleShowMusicFormL = this.handleShowMusicFormL.bind(this);
-        // this.handleShowMusicFormR = this.handleShowMusicFormR.bind(this);
-        // this.handleShowCuisineFormL = this.handleShowCuisineFormL.bind(this);
-        // this.handleShowCuisineFormR = this.handleShowCuisineFormR.bind(this);
-        // this.handleShowMovieFormL = this.handleShowMovieFormL.bind(this);
-        // this.handleShowMovieFormR = this.handleShowMovieFormR.bind(this);
-        // this.handleShowHobbyFormL = this.handleShowHobbyFormL.bind(this);
-        // this.handleShowHobbyFormR = this.handleShowHobbyFormR.bind(this);
-        this.handleShowFunForm = this.handleShowFunForm.bind(this);
 
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
 
@@ -80,6 +69,10 @@ class Match extends React.Component {
     handleFormSubmit() {
         console.log("TEST::");
         console.log(this.state);
+
+        // ADD API CALL to pass state
+
+        this.setState({ redirect: true });
     }
 
     handleShowNameForm() {
@@ -123,10 +116,6 @@ class Match extends React.Component {
             }
         });
         this.setState({ showForm: updatedShow });
-    }
-
-    handleShowFunForm() {
-        this.setState({ showFunForm: false });
     }
 
     setSelectedCatDogList(list) {
@@ -175,6 +164,7 @@ class Match extends React.Component {
         this.setState({ selectedSpacesTabs: list }, function() {
             console.log(this.state.selectedSpacesTabs);
         });
+        return true;
     }
 
     changeFirstName = (event) => {
@@ -214,96 +204,105 @@ class Match extends React.Component {
     };
 
     render() {
-        return (
-            <div className="homepage App">
-                <h2 className="Title">CIT CONNECT</h2>
-                <div className="Content">
-                    {this.state.showForm[0] && (
-                        <NameForm
-                            firstName={this.state.firstName}
-                            handleFirstNameChange={this.changeFirstName}
-                            lastName={this.state.lastName}
-                            handleLastNameChange={this.changeLastName}
-                            email={this.state.email}
-                            handleEmailChange={this.changeEmail}
-                            handleIsVisible={this.handleShowNameForm}
-                        ></NameForm>
-                    )}
-                    {this.state.showForm[1] && (
-                        <CatDogForm
-                            num={1}
-                            handleIsVisibleL={this.handleShowFormL}
-                            handleIsVisibleR={this.handleShowFormR}
-                            setSelectedCatDogList={this.setSelectedCatDogList}
-                        ></CatDogForm>
-                    )}
-                    {this.state.showForm[2] && (
-                        <MusicForm
-                            num={2}
-                            handleIsVisibleL={this.handleShowFormL}
-                            handleIsVisibleR={this.handleShowFormR}
-                            setSelectedMusicList={this.setSelectedMusicList}
-                        ></MusicForm>
-                    )}
-                    {this.state.showForm[3] && (
-                        <CuisineForm
-                            num={3}
-                            handleIsVisibleL={this.handleShowFormL}
-                            handleIsVisibleR={this.handleShowFormR}
-                            setSelectedCuisineList={this.setSelectedCuisineList}
-                        ></CuisineForm>
-                    )}
+        if (this.state.redirect) {
+            return <Navigate push to="/finished" />;
+        } else {
+            return (
+                <div className="homepage App">
+                    <h2 className="Title">CIT CONNECT</h2>
+                    <div className="Content">
+                        {this.state.showForm[0] && (
+                            <NameForm
+                                firstName={this.state.firstName}
+                                handleFirstNameChange={this.changeFirstName}
+                                lastName={this.state.lastName}
+                                handleLastNameChange={this.changeLastName}
+                                email={this.state.email}
+                                handleEmailChange={this.changeEmail}
+                                handleIsVisible={this.handleShowNameForm}
+                            ></NameForm>
+                        )}
+                        {this.state.showForm[1] && (
+                            <CatDogForm
+                                num={1}
+                                handleIsVisibleL={this.handleShowFormL}
+                                handleIsVisibleR={this.handleShowFormR}
+                                setSelectedCatDogList={
+                                    this.setSelectedCatDogList
+                                }
+                            ></CatDogForm>
+                        )}
+                        {this.state.showForm[2] && (
+                            <MusicForm
+                                num={2}
+                                handleIsVisibleL={this.handleShowFormL}
+                                handleIsVisibleR={this.handleShowFormR}
+                                setSelectedMusicList={this.setSelectedMusicList}
+                            ></MusicForm>
+                        )}
+                        {this.state.showForm[3] && (
+                            <CuisineForm
+                                num={3}
+                                handleIsVisibleL={this.handleShowFormL}
+                                handleIsVisibleR={this.handleShowFormR}
+                                setSelectedCuisineList={
+                                    this.setSelectedCuisineList
+                                }
+                            ></CuisineForm>
+                        )}
 
-                    {this.state.showForm[4] && (
-                        <PlaceForm
-                            num={4}
-                            handleIsVisibleL={this.handleShowFormL}
-                            handleIsVisibleR={this.handleShowFormR}
-                            setSelectedPlaceList={this.setSelectedPlaceList}
-                        ></PlaceForm>
-                    )}
-                    {this.state.showForm[5] && (
-                        <MovieForm
-                            num={5}
-                            handleIsVisibleL={this.handleShowFormL}
-                            handleIsVisibleR={this.handleShowFormR}
-                            setSelectedMovieList={this.setSelectedMovieList}
-                        ></MovieForm>
-                    )}
+                        {this.state.showForm[4] && (
+                            <PlaceForm
+                                num={4}
+                                handleIsVisibleL={this.handleShowFormL}
+                                handleIsVisibleR={this.handleShowFormR}
+                                setSelectedPlaceList={this.setSelectedPlaceList}
+                            ></PlaceForm>
+                        )}
+                        {this.state.showForm[5] && (
+                            <MovieForm
+                                num={5}
+                                handleIsVisibleL={this.handleShowFormL}
+                                handleIsVisibleR={this.handleShowFormR}
+                                setSelectedMovieList={this.setSelectedMovieList}
+                            ></MovieForm>
+                        )}
 
-                    {this.state.showForm[6] && (
-                        <DayForm
-                            num={6}
-                            handleIsVisibleL={this.handleShowFormL}
-                            handleIsVisibleR={this.handleShowFormR}
-                            setSelectedDayList={this.setSelectedDayList}
-                        ></DayForm>
-                    )}
-                    {this.state.showForm[7] && (
-                        <HobbyForm
-                            num={7}
-                            handleIsVisibleL={this.handleShowFormL}
-                            handleIsVisibleR={this.handleShowFormR}
-                            setSelectedHobbyList={this.setSelectedHobbyList}
-                        ></HobbyForm>
-                    )}
-                    {this.state.showForm[8] && (
-                        <FunForm
-                            num={8}
-                            languages={this.state.languages}
-                            classes={this.state.classes}
-                            twoSums={this.state.twoSums}
-                            handleLanguagesChange={this.changeLanguages}
-                            handleClassesChange={this.changeClasses}
-                            handleTwoSumsChange={this.changeTwoSums}
-                            handleIsVisible={this.handleShowFunForm}
-                            setSelectedSpacesTabs={this.setSelectedSpacesTabs}
-                            handleFormSubmit={this.handleFormSubmit}
-                        ></FunForm>
-                    )}
+                        {this.state.showForm[6] && (
+                            <DayForm
+                                num={6}
+                                handleIsVisibleL={this.handleShowFormL}
+                                handleIsVisibleR={this.handleShowFormR}
+                                setSelectedDayList={this.setSelectedDayList}
+                            ></DayForm>
+                        )}
+                        {this.state.showForm[7] && (
+                            <HobbyForm
+                                num={7}
+                                handleIsVisibleL={this.handleShowFormL}
+                                handleIsVisibleR={this.handleShowFormR}
+                                setSelectedHobbyList={this.setSelectedHobbyList}
+                            ></HobbyForm>
+                        )}
+                        {this.state.showForm[8] && (
+                            <FunForm
+                                num={8}
+                                languages={this.state.languages}
+                                classes={this.state.classes}
+                                twoSums={this.state.twoSums}
+                                handleLanguagesChange={this.changeLanguages}
+                                handleClassesChange={this.changeClasses}
+                                handleTwoSumsChange={this.changeTwoSums}
+                                setSelectedSpacesTabs={
+                                    this.setSelectedSpacesTabs
+                                }
+                                handleFormSubmit={this.handleFormSubmit}
+                            ></FunForm>
+                        )}
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import FunStyles from "../FunForm.module.css";
 
 class FunForm extends React.Component {
@@ -8,18 +9,6 @@ class FunForm extends React.Component {
             options: ["spaces", "tabs"],
             selectedOptions: [false, false],
         };
-        this.updateSelection = this.updateSelection.bind(this);
-    }
-
-    updateSelection() {
-        var list = [];
-        for (var i = 0; i < this.state.selectedOptions.length; i++) {
-            if (this.state.selectedOptions[i]) {
-                list.push(this.state.options[i]);
-            }
-        }
-
-        this.props.setSelectedSpacesTabs(list);
     }
 
     handleSelectionChange(index) {
@@ -44,9 +33,9 @@ class FunForm extends React.Component {
             handleLanguagesChange,
             handleClassesChange,
             handleTwoSumsChange,
-            handleIsVisible,
             handleFormSubmit,
         } = this.props;
+
         return (
             <div className={FunStyles.Content}>
                 <div
@@ -90,7 +79,10 @@ class FunForm extends React.Component {
                                     ? `${FunStyles.SelectedButton}`
                                     : `${FunStyles.UnselectedButton}`
                             }
-                            onClick={() => this.handleSelectionChange(0)}
+                            onClick={() => {
+                                this.handleSelectionChange(0);
+                                // this.updateSelection();
+                            }}
                         >
                             <text>spaces</text>
                         </div>
@@ -100,7 +92,10 @@ class FunForm extends React.Component {
                                     ? `${FunStyles.SelectedButton}`
                                     : `${FunStyles.UnselectedButton}`
                             }
-                            onClick={() => this.handleSelectionChange(1)}
+                            onClick={() => {
+                                this.handleSelectionChange(1);
+                                // this.updateSelection();
+                            }}
                         >
                             <text>tabs</text>
                         </div>
@@ -125,16 +120,29 @@ class FunForm extends React.Component {
                             </label>
                         </form>
                     </div>
-
                     <button
                         className={FunStyles.SubmitButton}
                         onClick={() => {
-                            const submit = async () => {
-                                const result = await this.updateSelection();
+                            const updateSelection = new Promise((resolve) => {
+                                var list = [];
+                                for (
+                                    var i = 0;
+                                    i < this.state.selectedOptions.length;
+                                    i++
+                                ) {
+                                    if (this.state.selectedOptions[i]) {
+                                        list.push(this.state.options[i]);
+                                    }
+                                }
+
+                                this.props.setSelectedSpacesTabs(list);
+
+                                resolve();
+                            });
+
+                            updateSelection.then((results) => {
                                 this.props.handleFormSubmit();
-                            };
-                            submit();
-                            this.props.handleIsVisible();
+                            });
                         }}
                     ></button>
                 </div>

@@ -64,7 +64,7 @@ class CatDogForm extends React.Component {
                             }
                             onClick={() => this.handleSelectionChange(0)}
                         >
-                            <text>{`${this.state.options[0]}`}</text>
+                            {`${this.state.options[0]}`}
                         </div>
                         <div
                             className={
@@ -74,7 +74,7 @@ class CatDogForm extends React.Component {
                             }
                             onClick={() => this.handleSelectionChange(1)}
                         >
-                            <text>{`${this.state.options[1]}`}</text>
+                            {`${this.state.options[1]}`}
                         </div>
                     </div>
                 </div>
