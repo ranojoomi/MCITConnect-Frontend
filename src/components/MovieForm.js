@@ -57,6 +57,7 @@ class MovieForm extends React.Component {
 
     render() {
         const {
+            num,
             setSelectedMovieList,
             handleIsVisibleL,
             handleIsVisibleR,
@@ -143,13 +144,13 @@ class MovieForm extends React.Component {
                                     ? `${MovieStyles.SelectedButton}`
                                     : `${MovieStyles.UnselectedButton}`
                             }
-                            onClick={() => this.handleSelectionChange(7)}
+                            onClick={() => this.handleSelectionChange(6)}
                         >
                             <text>Comedy</text>
                         </div>
                         <div
                             className={
-                                this.state.selectedOptions[6]
+                                this.state.selectedOptions[7]
                                     ? `${MovieStyles.SelectedButton}`
                                     : `${MovieStyles.UnselectedButton}`
                             }
@@ -164,7 +165,7 @@ class MovieForm extends React.Component {
                     className="ArrowL"
                     onClick={() => {
                         this.updateSelection();
-                        this.props.handleIsVisibleL();
+                        this.props.handleIsVisibleL(num);
                     }}
                 ></button>
 
@@ -172,7 +173,7 @@ class MovieForm extends React.Component {
                     className="ArrowR"
                     onClick={() => {
                         this.updateSelection();
-                        this.props.handleIsVisibleR();
+                        this.props.handleIsVisibleR(num);
                     }}
                 ></button>
             </div>
